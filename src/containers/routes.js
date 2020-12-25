@@ -1,15 +1,7 @@
-
-import IndexPage from './IndexPage';
+import IndexRoute from './IndexPage';
 
 const Routes = {
-    '/index': {
-        render(vnode) {
-            if (typeof vnode.tag === 'function') {
-                return vnode;
-            }
-            return m(IndexPage);
-        },
-    },
+    ...IndexRoute
 };
 
 const DefaultRoute = '/index';
