@@ -1,9 +1,11 @@
+import {
+  Typography
+} from '../../shared/components';
 const HomePage = () => {
   return {
     view: () => (
         <div>
-          <h2>Congratulations, you made it!</h2>
-          <p>my first mithril app.!!!!!!!</p>
+          <Typography variant={"h1"}>live</Typography>
         </div>
       )
   };
