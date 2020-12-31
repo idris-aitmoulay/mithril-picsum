@@ -1,11 +1,11 @@
 import {
-  Typography
+  Panel
 } from '../../shared/components';
 const HomePage = () => {
   return {
     view: () => (
         <div>
-          <Typography variant={"h1"}>live</Typography>
+          <Panel />
         </div>
       )
   };
