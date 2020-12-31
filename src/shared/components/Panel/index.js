@@ -7,16 +7,16 @@ import './styles.scss';
 const Panel = () => {
   let src = '', text = '';
   const oninit = ({ attrs }) => {
-    text = _.get(attrs, 'text', 'live is live');
+    text = _.get(attrs, 'text', 'live is');
     src = _.get(attrs, 'src', undefined);
   };
 
   return {
     oninit,
     view: () => (
-      <div style={{ position: 'relative' }}>
+      <div class="panel">
         <Image src={src} />
-        <div class={'panel_text'}>
+        <div class="panel_text">
           <Typography variant={"h1"}>{text}</Typography>
         </div>
       </div>
