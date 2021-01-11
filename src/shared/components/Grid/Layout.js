@@ -34,13 +34,6 @@ const Layout = () => {
     animationManager = new AnimationManager();
   };
 
-  const oncreate = vnode => {
-    sortManager = new GridSort({
-      containerWidth: _.get(vnode,'attr.containerWidth', 0),
-      gridWidth: _.get(vnode,'attr.gridWidth', 0)
-    });
-  };
-
   const setPrivateProps = () => {
     containerStyle = {
       position: 'relative',
@@ -64,8 +57,6 @@ const Layout = () => {
         sortManager.init();
       }
       let calculatedPosition = sortManager.getPosition(childWidth, childHeight);
-
-      console.log(calculatedPosition);
 
       if (fixedContainerHeight && containerWidth) {
         if (calculatedPosition[1] + childHeight > containerStyle.height) {
