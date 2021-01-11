@@ -22,7 +22,7 @@ const Panel = () => {
     view: () => (
       <div class="panel">
         <Image src={src} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}/>
-        <div hidden={hidden} class="panel_text" onmouseenter={onMouseEnter}>
+        <div hidden={hidden} class="panel_text" onmouseenter={onMouseEnter} onmouseleave={onMouseLeave}>
           <Typography variant={"h1"}>{text}</Typography>
         </div>
       </div>
