@@ -1,7 +1,6 @@
 import {
   Panel,
   GridLayout,
-  GridSize
 } from '../../shared/components';
 const HomePage = () => {
 
@@ -15,21 +14,23 @@ const HomePage = () => {
     };
   };
 
-  let style = {
-    width: GridSize.m,
-    height: GridSize.m
-  };
-
   return {
     view: () => (
         <div>
           <GridLayout ref="container" {...getAutoResponsiveProps()}>
-            <div style={style}>dd</div>
-            <div style={style}>aaa</div>
-            <div style={style}>asa</div>
-            <div style={style}>sasq</div>
-            <div style={style}>asa</div>
-            <div style={style}>sasq</div>
+            <div size-l>dsds</div>
+            <div size-s>dsds</div>
+            <div size-s>dd</div>
+            <div>dd</div>
+            <div>dd</div>
+            <div>dd</div>
+            <div size-m>dd</div>
+            <div>dd</div>
+            <div>dd</div>
+            <div>dd</div>
+            <div>dd</div>
+            <div>dd</div>
+            <div>dd</div>
           </GridLayout>
         </div>
       )

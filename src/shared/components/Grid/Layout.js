@@ -3,6 +3,7 @@ const Core = require('autoresponsive-core');
 
 const { GridSort } = Core;
 import AnimationManager from './animation';
+import { GridSize } from "./constants";
 
 const noop = () => {};
 
@@ -34,13 +35,6 @@ const Layout = () => {
     animationManager = new AnimationManager();
   };
 
-  const oncreate = vnode => {
-    sortManager = new GridSort({
-      containerWidth: _.get(vnode,'attr.containerWidth', 0),
-      gridWidth: _.get(vnode,'attr.gridWidth', 0)
-    });
-  };
-
   const setPrivateProps = () => {
     containerStyle = {
       position: 'relative',
@@ -57,27 +51,33 @@ const Layout = () => {
 
   const renderChildren = (children = []) => {
     return children.map((child, childIndex) => {
-      let childWidth = _.get(child, 'attrs.style.width', 10) + itemMargin;
-      let childHeight = _.get(child, 'attrs.style.height', 10) + itemMargin;
+      const attrs = _.get(child, 'attrs', { });
+      const grids = attrs ? Object.keys(attrs).filter(item => ('' + item).startsWith('size-')) : [];
+
+      let size = GridSize['size-m'];
+      if (!_.isEmpty(grids)) {
+        size = GridSize[grids[0]];
+      }
+      const childSize = size + itemMargin;
+
       if (!sortManager) {
         sortManager = new GridSort({ containerWidth, gridWidth });
         sortManager.init();
       }
-      let calculatedPosition = sortManager.getPosition(childWidth, childHeight);
+      let calculatedPosition = sortManager.getPosition(childSize, childSize);
 
-      console.log(calculatedPosition);
 
       if (fixedContainerHeight && containerWidth) {
-        if (calculatedPosition[1] + childHeight > containerStyle.height) {
-          containerStyle.height = calculatedPosition[1] + childHeight;
+        if (calculatedPosition[1] + childSize > containerStyle.height) {
+          containerStyle.height = calculatedPosition[1] + childSize;
         }
       }
 
       const options = Object.assign({}, {
         position: calculatedPosition,
         size: {
-          width: childWidth,
-          height: childHeight
+          width: childSize,
+          height: childSize
         },
         containerHeight: containerStyle.height,
         itemMargin: itemMargin
@@ -91,6 +91,7 @@ const Layout = () => {
 
       let calculatedStyle = animationManager.generate(options);
       calculatedStyle = mixItemInlineStyle(calculatedStyle);
+
       const style = Object.assign({}, _.get(child, 'attrs.style'), calculatedStyle);
       child.attrs = {
         ..._.get(child, 'attrs', {}),
@@ -99,6 +100,7 @@ const Layout = () => {
           ..._.get(child, 'attrs.style', {})
         }
       };
+
       return child;
     })
   };

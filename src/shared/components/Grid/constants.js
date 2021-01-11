@@ -1,5 +1,5 @@
-export const size = {
-  l: 320,
-  m: 160,
-  s: 80
+export const GridSize = {
+  'size-l': 320,
+  'size-m': 160,
+  'size-s': 80
 };
