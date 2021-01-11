@@ -1,9 +1,7 @@
 import {
   Panel,
   GridLayout,
-  divLayout
 } from '../../shared/components';
-import { gridItemLayout } from "../../shared/components/Grid";
 const HomePage = () => {
 
   const getAutoResponsiveProps = () => {
@@ -20,13 +18,13 @@ const HomePage = () => {
     view: () => (
         <div>
           <GridLayout ref="container" {...getAutoResponsiveProps()}>
-            <div style={gridItemLayout('l')}>dsds</div>
-            <div style={gridItemLayout('m')}>dsds</div>
+            <div size-l>dsds</div>
+            <div size-s>dsds</div>
+            <div size-s>dd</div>
             <div>dd</div>
             <div>dd</div>
             <div>dd</div>
-            <div style={gridItemLayout('l')}>dd</div>
-            <div>dd</div>
+            <div size-m>dd</div>
             <div>dd</div>
             <div>dd</div>
             <div>dd</div>
