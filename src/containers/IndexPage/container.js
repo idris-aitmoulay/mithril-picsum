@@ -1,8 +1,9 @@
 import {
   Panel,
   GridLayout,
-  GridItem
+  divLayout
 } from '../../shared/components';
+import { gridItemLayout } from "../../shared/components/Grid";
 const HomePage = () => {
 
   const getAutoResponsiveProps = () => {
@@ -19,19 +20,19 @@ const HomePage = () => {
     view: () => (
         <div>
           <GridLayout ref="container" {...getAutoResponsiveProps()}>
-            <GridItem size={'l'}>dsds</GridItem>
-            <GridItem size={'s'}>dsds</GridItem>
-            <GridItem>dd</GridItem>
-            <GridItem>dd</GridItem>
-            <GridItem>dd</GridItem>
-            <GridItem size={'s'}>dd</GridItem>
-            <GridItem>dd</GridItem>
-            <GridItem>dd</GridItem>
-            <GridItem>dd</GridItem>
-            <GridItem>dd</GridItem>
-            <GridItem>dd</GridItem>
-            <GridItem>dd</GridItem>
-            <GridItem>dd</GridItem>
+            <div style={gridItemLayout('l')}>dsds</div>
+            <div style={gridItemLayout('m')}>dsds</div>
+            <div>dd</div>
+            <div>dd</div>
+            <div>dd</div>
+            <div style={gridItemLayout('l')}>dd</div>
+            <div>dd</div>
+            <div>dd</div>
+            <div>dd</div>
+            <div>dd</div>
+            <div>dd</div>
+            <div>dd</div>
+            <div>dd</div>
           </GridLayout>
         </div>
       )

@@ -3,6 +3,7 @@ const Core = require('autoresponsive-core');
 
 const { GridSort } = Core;
 import AnimationManager from './animation';
+import { GridSize } from "./constants";
 
 const noop = () => {};
 
@@ -50,8 +51,8 @@ const Layout = () => {
 
   const renderChildren = (children = []) => {
     return children.map((child, childIndex) => {
-      let childWidth = _.get(child, 'attrs.style.width', 10) + itemMargin;
-      let childHeight = _.get(child, 'attrs.style.height', 10) + itemMargin;
+      let childWidth = _.get(child, 'attrs.style.width', GridSize.m) + itemMargin;
+      let childHeight = _.get(child, 'attrs.style.height', GridSize.m) + itemMargin;
       if (!sortManager) {
         sortManager = new GridSort({ containerWidth, gridWidth });
         sortManager.init();
