@@ -1,7 +1,7 @@
 .panel {
   position: relative;
   &_text {
-    position: absolute;
+    position: fixed;
     top: 80px;
     left: 0
   }

@@ -58,7 +58,9 @@
     "@babel/runtime": "^7.9.6",
     "lodash": "^4.17.20",
     "mithril": "^2.0.4",
-    "regenerator-runtime": "^0.13.5"
+    "redux": "^4.0.5",
+    "regenerator-runtime": "^0.13.5",
+    "reselect": "^4.0.0"
   },
   "browserslist": [
     "IE 10"

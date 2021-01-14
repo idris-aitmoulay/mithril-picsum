@@ -4,11 +4,16 @@ import Image from '../Image';
 import './styles.scss';
 
 
+// test: https://picsum.photos/id/0/5616/3744
 const Panel = () => {
   let src = '', text = '', hidden = true;
+  let width = '320px', height = '320px';
   const oninit = ({ attrs }) => {
     text = _.get(attrs, 'text', 'live is');
-    src = _.get(attrs, 'src', undefined);
+    width = _.get(attrs, 'width', '320px');
+    height = _.get(attrs, 'height', '320px');
+
+    src = _.get(attrs, 'src', 'https://picsum.photos/id/0/200/200');
   };
   const onMouseEnter = () => {
     hidden = false;
@@ -20,10 +25,17 @@ const Panel = () => {
   return {
     oninit,
     view: () => (
-      <div class="panel">
-        <Image src={src} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}/>
-        <div hidden={hidden} class="panel_text" onmouseenter={onMouseEnter} onmouseleave={onMouseLeave}>
-          <Typography variant={"h1"}>{text}</Typography>
+      <div>
+        <div className="panel">
+          <Image style={{ position: 'relative' }} src={src} width={width} height={height}/>
+          {
+            !hidden && (
+              <div style={{ position: 'relative' }}>
+                <Typography variant={"h1"}>{text}</Typography>
+              </div>
+            )
+          }
+
         </div>
       </div>
     )
