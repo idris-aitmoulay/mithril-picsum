@@ -1,13 +1,27 @@
-import { createStructuredSelector } from 'reselect';
+import { createStructuredSelector } from "reselect";
 import { GridLayout } from '../../shared/components';
 import { GRID_SIZE, GridSize } from "../../shared/components/Grid";
 import { connect } from '../../shared/store/connect';
 import { fillPictures } from './actions';
+import { makeSelectPicturesLoading, makeSelectPicturesError, makeSelectPictures } from './selectors';
 
 const size = ['size-s', 'size-m', 'size-l'];
 
+const noop = () => {};
+
 const HomePage = () => {
   let data = [];
+  let loadPicturesAction;
+  const oninit = vnode => {
+    if (!loadPicturesAction) {
+      loadPicturesAction = _.get(vnode, 'attrs.loadPicturesAction', noop);
+    }
+  };
+
+  const oncreate = () => {
+    loadPicturesAction();
+  };
+
   const getAutoResponsiveProps = () => {
     return {
       itemMargin: 10,
@@ -28,11 +42,13 @@ const HomePage = () => {
   });
 
   const sendXHRQuery = () => {
-
+    loadPicturesAction();
   };
 
 
   return {
+    oninit,
+    oncreate,
     view: () => (
         <div>
           <GridLayout ref="container" {...getAutoResponsiveProps()}>
@@ -70,10 +86,15 @@ const HomePage = () => {
   };
 };
 
+const mapStateToVnodeAttrs = createStructuredSelector({
+  loading: makeSelectPicturesLoading(),
+  pictures: makeSelectPictures(),
+  error: makeSelectPicturesError()
+});
 
 const mapDispatchToVnodeAttrs = dispatch => ({
   loadPicturesAction: data => dispatch(fillPictures(data)),
 });
 
 
-export default connect(null, mapDispatchToVnodeAttrs)(HomePage);
+export default connect(mapStateToVnodeAttrs, mapDispatchToVnodeAttrs)(HomePage);

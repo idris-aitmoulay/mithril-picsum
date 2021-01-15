@@ -1,18 +1,18 @@
 import { PICTURES, PICTURES_SUCCESS, PICTURES_FAILED } from './constants';
 
-const fillPictures = ({ payload }) => ({
+const fillPictures = payload => ({
   type: PICTURES,
   payload
 });
 
-const fillPicturesSuccess = ({ payload }) => ({
+const fillPicturesSuccess = payload => ({
   type: PICTURES_SUCCESS,
   payload
 });
 
-const fillPicturesFailed = ({ error }) => ({
+const fillPicturesFailed = () => ({
   type: PICTURES_FAILED,
-  error
+  error: { message: 'error loading' }
 });
 
 export { fillPictures, fillPicturesSuccess, fillPicturesFailed };

@@ -10,8 +10,10 @@ export default (
     case PICTURES:
       return state;
     case PICTURES_FAILED:
+      console.log('action failed:' , action);
       return state;
     case PICTURES_SUCCESS:
+      console.log('action success: ', action);
       return state;
     default:
       return state;

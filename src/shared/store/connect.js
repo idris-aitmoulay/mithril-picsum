@@ -21,9 +21,10 @@ export const connect = (
 
   return {
     onmatch: () => initialVnode,
-    render: vnode => {
-      vnode.attrs = { ...currentAttrValues, ...attrsWithDispatch };
-      return vnode;
+    view: () => {
+      return m(initialVnode, { ...currentAttrValues, ...attrsWithDispatch  })
     }
   };
 };
+
+export const dispatch = store.dispatch;
