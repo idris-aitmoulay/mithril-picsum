@@ -50,6 +50,10 @@ const Layout = () => {
   };
 
   const renderChildren = (children = []) => {
+    if (!sortManager) {
+      sortManager = new GridSort({ containerWidth, gridWidth });
+    }
+    sortManager.init();
     return children.map((child, childIndex) => {
       const attrs = _.get(child, 'attrs', { });
       const grids = attrs ? Object.keys(attrs).filter(item => ('' + item).startsWith('size-')) : [];
