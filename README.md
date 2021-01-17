@@ -1,5 +1,5 @@
 # test at docker:
-go to the repository folder then run the commun command:
+go to the repository folder then run the commands below:
  - ``cd devops``
  - ``docker-compose build``
  - ``docker-compose up``
