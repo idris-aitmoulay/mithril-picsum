@@ -4,14 +4,9 @@ import { GRID_SIZE, GridSize } from "../../shared/components/Grid";
 import { connect } from '../../shared/store';
 import { fillPictures } from './actions';
 import { makeSelectPicturesLoading, makeSelectPicturesError, makeSelectPictures } from './selectors';
+import { GetRandomWithProbability } from './utils';
 
 const size = ['size-s', 'size-m', 'size-l'];
-
-const GetRandomWithProbability = () => {
-  const RandomNumbers = [0, 0, 0, 0,0, 0, 0, 0, 1,1,1,1,2];
-  const idx = Math.floor(Math.random() * RandomNumbers.length);
-  return RandomNumbers[idx];
-};
 
 const noop = () => {};
 
@@ -32,7 +27,7 @@ const HomePage = () => {
   const getAutoResponsiveProps = () => {
     return {
       itemMargin: 10,
-      containerWidth: document.body.clientWidth,
+      containerWidth: document.body.clientWidth - 40,
       itemClassName: 'item',
       gridWidth: 100,
       transitionDuration: '.5'
@@ -57,22 +52,20 @@ const HomePage = () => {
     oninit,
     oncreate,
     view: () => (
-        <div>
-          <GridLayout ref="container" {...getAutoResponsiveProps()}>
-            {
-              data.map(item => {
-                const sizeIndex = GetRandomWithProbability();
-                const { author, download_url } = item;
-                const urlBase = _.dropRight(download_url.split("/"), 2).join("/");
-                return (
-                <div {...getPanelProps(size[sizeIndex])}>
-                  <img style={{position: 'absolute'}} src={`${urlBase}/${GridSize[size[sizeIndex]]}/${GridSize[size[sizeIndex]]}`} alt=""/>
-                  <span style={{ position: 'absolute', color: 'white', bottom: 0, 'margin': "16px" }}>{author}</span>
-                </div>)
-              })
-            }
-          </GridLayout>
-        </div>
+        <GridLayout ref="container" {...getAutoResponsiveProps()}>
+          {
+            data.map(item => {
+              const sizeIndex = GetRandomWithProbability();
+              const { author, download_url } = item;
+              const urlBase = _.dropRight(download_url.split("/"), 2).join("/");
+              return (
+              <div {...getPanelProps(size[sizeIndex])}>
+                <img style={{position: 'absolute'}} src={`${urlBase}/${GridSize[size[sizeIndex]]}/${GridSize[size[sizeIndex]]}`} alt=""/>
+                <span style={{ position: 'absolute', color: 'white', bottom: 0, 'margin': "16px" }}>{author}</span>
+              </div>)
+            })
+          }
+        </GridLayout>
       )
   };
 };
