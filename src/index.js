@@ -3,8 +3,6 @@ import 'regenerator-runtime/runtime';
 
 import { Routes, DefaultRoute } from './containers/routes';
 
-import './styles.scss';
-
 if (module.hot) {
   module.hot.accept();
 }

@@ -1,5 +1,4 @@
 import m from 'mithril';
-import './styles.scss';
 import _ from 'lodash';
 
 const Typography = () => {

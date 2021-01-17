@@ -1,4 +1,3 @@
-import './styles.scss';
 import _ from "lodash";
 
 const Image = () => {

@@ -1,7 +1,6 @@
 import _ from 'lodash';
 import Typography from '../Typography';
 import Image from '../Image';
-import './styles.scss';
 
 const Panel = () => {
   let  text = '', hidden = false;
