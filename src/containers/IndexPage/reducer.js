@@ -1,6 +1,13 @@
+import { fromJS } from "immutable";
 import { PICTURES, PICTURES_FAILED, PICTURES_SUCCESS } from './constants';
 
-const initialState = { payload: [], error: { }, loading: false };
+const initialState = fromJS(
+  {
+    payload: [],
+    error: { },
+    loading: false
+  }
+);
 
 export default (
   state = initialState,
@@ -10,12 +17,13 @@ export default (
     case PICTURES:
       return state;
     case PICTURES_FAILED:
-      console.log('action failed:' , action);
-      return state;
+      // todo: need to write error message into store.
+      return state.set('loading', false);
     case PICTURES_SUCCESS:
-      console.log('action success: ', action);
-      return state;
+      return state
+        .set('loading', false)
+        .set('payload', action.payload);
     default:
-      return state;
+      return state.set('loading', true);
   }
 };
