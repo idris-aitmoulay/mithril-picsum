@@ -1,4 +1,4 @@
-import { store } from './config';
+import store from './config';
 
 export const connect = (
   mapStateToVnodeAttrs,
@@ -26,5 +26,3 @@ export const connect = (
     }
   };
 };
-
-export const dispatch = store.dispatch;

@@ -1,18 +1,19 @@
-import { takeLatest } from "../../shared/store/utils";
+import { takeLatest } from "../../shared/store";
 import { PICTURES } from './constants';
-import { dispatch } from '../../shared/store/connect';
 import { fillPicturesSuccess, fillPicturesFailed } from './actions';
-export const GetPictureSagas = action => {
+
+const GetPictureSagas = ({ action, dispatch }) => {
   m.request({
-    method: "PUT",
+    method: "GET",
     url: "https://picsum.photos/v2/list"
-  }).then(function(result) {
+  }).then((result) => {
     dispatch(fillPicturesSuccess(result));
-  }).catch(error => {
+  }).catch(() => {
     dispatch(fillPicturesFailed());
   });
 };
 
+// const sagas = takeLatest(PICTURES, GetPictureSagas);
+
 export default [
-  takeLatest(PICTURES, GetPictureSagas)
-]
+];
