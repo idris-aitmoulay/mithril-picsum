@@ -21,15 +21,15 @@ const Layout = () => {
 
   const oninit = ({ attrs }) => {
     containerHeight = _.get(attrs, 'containerHeight', undefined);
-    gridWidth = _.get(attrs, 'gridWidth', 10);
+    gridWidth = _.get(attrs, 'gridWidth', 5);
     containerWidth = _.get(attrs, 'containerWidth', 200);
-    itemMargin = _.get(attrs, 'itemMargin', 10);
+    itemMargin = _.get(attrs, 'itemMargin', 5);
     onItemDidLayout = _.get(attrs, 'onItemDidLayout', noop);
     onContainerDidLayout = _.get(attrs, 'onContainerDidLayout', noop);
 
     sortManager = new GridSort({
       containerWidth: _.get(attrs,'containerWidth', 200),
-      gridWidth: _.get(attrs,'gridWidth', 10)
+      gridWidth: _.get(attrs,'gridWidth', 5)
     });
     sortManager.init();
     animationManager = new AnimationManager();
@@ -49,7 +49,8 @@ const Layout = () => {
     }
   };
 
-  const renderChildren = (children = []) => {
+  const renderChildren = (childs = []) => {
+    const children = _.reduce(childs, (cm, cv) => _.concat(cm, cv), []);
     if (!sortManager) {
       sortManager = new GridSort({ containerWidth, gridWidth });
     }
