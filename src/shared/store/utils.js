@@ -1,30 +1,18 @@
 const initialState = { };
 import _ from 'lodash';
-// import store from './config';
-
-
-const noop = () => {};
+import { put } from './config';
 
 const noopReducers = (sagasReducers = []) => (
   state = initialState,
   action
 ) => {
   _.forEach(sagasReducers, sagasAction => {
-    sagasAction({ action, dispatch: noop });
+    sagasAction({ action, dispatch: put });
   });
   return state;
 };
 
 
-const takeLatest = (fixedAction, callBackSagas) => action => {
-  const { type } = action;
-  if (fixedAction === type) {
-    return callBackSagas(action);
-  }
-  return noop()
-};
-
 export {
   noopReducers,
-  takeLatest
 }

@@ -8,9 +8,10 @@ const rootReducer = combineReducers({
   sagas: noopReducers(sagas)
 });
 
-const store = createStore(
+export const store = createStore(
   rootReducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
-export default store;
+
+export const put = store.dispatch;

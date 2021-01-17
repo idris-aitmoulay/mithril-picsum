@@ -1,8 +1,21 @@
-import { takeLatest } from "../../shared/store";
 import { PICTURES } from './constants';
 import { fillPicturesSuccess, fillPicturesFailed } from './actions';
 
-const GetPictureSagas = ({ action, dispatch }) => {
+const takeLatest = (fixedAction, callBackSagas) => {
+  const noop = () => {};
+  function returnedFn(params) {
+    const { action, dispatch } = params;
+    const { type } = action;
+    if (fixedAction === type) {
+      return callBackSagas({ action, dispatch });
+    }
+    return noop()
+  }
+  return returnedFn;
+};
+
+
+const GetPictureSagas = ({ dispatch }) => {
   m.request({
     method: "GET",
     url: "https://picsum.photos/v2/list"
@@ -13,7 +26,6 @@ const GetPictureSagas = ({ action, dispatch }) => {
   });
 };
 
-// const sagas = takeLatest(PICTURES, GetPictureSagas);
-
 export default [
+  takeLatest(PICTURES, GetPictureSagas)
 ];
